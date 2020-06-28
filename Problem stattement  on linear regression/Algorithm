@@ -1,0 +1,15 @@
+Start -
+1 – Take input n for array size.
+2 – Again take input for pizza price(y) and size(x).
+3 – Take loop and set 
+	sumX = sumX + x[i];///calculate sigma(xi)
+            sumX2 = sumX2 + x[i]*x[i];///calculate sigma(x^2i)
+      	sumY = sumY + y[i];///calculate sigma(yi)
+      	sumXY = sumXY + x[i]*y[i];///calculate sigma(xi*yi)4 – Set 
+4 – Set 
+	a = (n*sumXY-sumX*sumY)/(n*sumX2-sumX*sumX);///calculate Slope
+            b = (sumY - a*sumX)/n;);///calculate Intercept
+5 – print a,b values.
+6 – print Equation of best fitting line y = ax + b.
+7 – Call price function and set future pizza size and get pizza price (money=x*inch+y;).
+End.
