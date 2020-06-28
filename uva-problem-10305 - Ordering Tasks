@@ -1,0 +1,83 @@
+
+1.	/*
+2.	  10305 - Ordering Tasks
+3.	*/
+4.	#include<bits/stdc++.h>
+5.	using namespace std;
+6.	 
+7.	int deg[105];
+8.	vector<int> adj[105]; // global declaration (line 8-10)
+9.	queue <int> top_q;
+10.	int n,m;
+11.	 
+12.	void topological() // function for top short
+13.	{
+14.	queue<int> q; // local variable
+15.	 
+16.	for(int i=1; i<=n; i++) //loop declaration
+17.	if(deg[i]==0) // array index push
+18.	q.push(i);
+19.	 
+20.	while(!q.empty()) // loop declaration
+21.	{
+22.	int top = q.front(); // assign value
+23.	q.pop();
+24.	top_q.push(top); // line 23 and 24 for push and pop value assign
+25.	 
+26.	for(int i=0; i<adj[top].size(); i++) // loop declaration for main method
+27.	{
+28.	deg[adj[top][i]]--;
+29.	if(deg[adj[top][i]]==0) //line 28-30 work for adjacent ,top value and indegree
+30.	q.push(adj[top][i]);
+31.	}
+32.	}
+33.	 
+34.	for(int i=0; i<=n; i++)
+35.	adj[i].clear(); // adjacent clearing
+36.	return;
+37.	}
+38.	 
+39.	int main() // main function
+40.	{
+41.	ios_base::sync_with_stdio(false);
+42.	cin.tie(NULL);
+43.	 
+44.	for(;;) // loop
+45.	{
+46.	cin >> n >> m; // user input
+47.	if(!n && !m)
+48.	return 0;
+49.	 
+50.	int t1,t2; // variable declaration for task1 and task2
+51.	for(int i=0; i<=n; i++)
+52.	deg[i] = 0; //indegree value is 0
+53.	 
+54.	for(int i=0; i<m; i++)
+55.	{
+56.	cin >> t1 >> t2; // user input for task1 and task2
+57.	adj[t1].push_back(t2); // relation between task1 and task 2
+58.	deg[t2]++;
+59.	}
+60.	topological(); // calling function
+61.	for(;!top_q.empty();)
+62.	{
+63.	cout << top_q.front() << " "; // output the main value
+64.	top_q.pop();
+65.	}
+66.	cout << "\n"; // for new line
+67.	}
+68.	return 0;
+69.	}
+70.	/*
+71.	5 4
+72.	1 2
+73.	2 3
+74.	1 3
+75.	1 5
+76.	5 4
+77.	1 2
+78.	2 3
+79.	1 3
+80.	1 5
+81.	0 0
+82.	*/
