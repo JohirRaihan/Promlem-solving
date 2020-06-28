@@ -1,0 +1,111 @@
+1.	#include<bits/stdc++.h>
+2.	using namespace std;
+3.	 
+4.	int value=0; // globally declar for user input
+5.	int step=0; // globally declar for couting step
+6.	bool flag; //for true or falce
+7.	 
+8.	int t1[101],t2[101],t3[101]; // globally declaration three array for three tower
+9.	 
+10.	int show_Towers(int a[],int b[],int c[]) // function for showing three show_Towers
+11.	 
+12.	{
+13.	int i; // local variable declaration
+14.	 
+15.	cout<<"Tower 1 = ";
+16.	for(i=0;i<value;i++) //loop for array index
+17.	cout<<" "<<a[i]; // tower1 index value
+18.	cout<<"\n"; // for new inline
+19.	 
+20.	cout<<"Tower 2 = ";
+21.	for(i=0;i<value;i++) //loop for array index
+22.	cout<<" "<<b[i]; // tower2 index value
+23.	cout<<"\n"; // for new inline
+24.	 
+25.	cout<<"Tower 3 = ";
+26.	for(i=0;i<value;i++) //loop for array index
+27.	cout<<" "<<c[i]; //tower3 index value
+28.	cout<<"\n"; // for new inline
+29.	 
+30.	}
+31.	 
+32.	int moving_value(int a[],int b[]) //function for moving index value
+33.	 
+34.	{
+35.	step++; // for couting steps
+36.	 
+37.	if(flag==true)
+38.	cout<<"Step : "<<step<<"\n"; //out put the steps
+39.	 
+40.	int x,y,i,j; // local variable
+41.	 
+42.	for(i=0;i<value;i++) //find top index location
+43.	{
+44.	if(a[i]==0)
+45.	{
+46.	x=--i;
+47.	break;
+48.	}
+49.	else
+50.	x=value -1;
+51.	 
+52.	}
+53.	 
+54.	for(i=0;i<value;i++) //find top index location
+55.	{
+56.	if(b[i]==0)
+57.	{
+58.	y=i;
+59.	break;
+60.	}
+61.	 
+62.	}
+63.	b[y]=a[x]; // moving index top to bottom
+64.	a[x]=0; // making index empty
+65.	 
+66.	if(flag==true)
+67.	{
+68.	show_Towers(t1,t2,t3); // output the three towers index value
+69.	cout<<"\n";
+70.	}
+71.	 
+72.	}
+73.	 
+74.	int Tower_Of_Hanoi(int value,int a[],int c[],int b[]) // function declaration
+75.	 
+76.	{
+77.	if(value>1)
+78.	{
+79.	Tower_Of_Hanoi(value-1,a,b,c);
+80.	moving_value(a,c); // calling value to change towers
+81.	Tower_Of_Hanoi(value-1,b,c,a);
+82.	 
+83.	}
+84.	else
+85.	moving_value(a,c);
+86.	}
+87.	 
+88.	int main() // main function
+89.	 
+90.	{
+91.	cout<<" Enter the value : ";
+92.	cin>>value; // value from user
+93.	 
+94.	flag=true;
+95.	 
+96.	int i; // local variable
+97.	int num= value; // asign the value
+98.	 
+99.	for(i=0;i<value;i++)
+100.	 
+101.	{
+102.	t1[i]=num; // tower1 index value
+103.	t2[i]=0; // tower2 index value
+104.	t3[i]=0; // tower3 index value
+105.	num--;
+106.	}
+107.	 
+108.	Tower_Of_Hanoi(value,t1,t3,t2); // calling the function for main output
+109.	 
+110.	return 0;
+111.	}
